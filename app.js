@@ -98,80 +98,6 @@ logBtn.addEventListener("click", function(){
 });
 
 
-//for drawing timeline using canvas of html
-// function drawTimeline(events) {
-//     let padding = 50; // Extra space at the top and bottom
-//     let gap = 50; // Space between events
-//     canvas.width = 1200;
-//     canvas.height = (events.length) * gap + padding * 2;
-
-//     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-
-//     // Draw vertical timeline line (extend slightly beyond last event)
-//     ctx.strokeStyle = "#888";
-//     ctx.lineWidth = 3;
-//     ctx.beginPath();
-//     ctx.moveTo(200, padding); // Start point (top)
-//     ctx.lineTo(200, canvas.height - padding); // End point (slightly beyond last event)
-//     ctx.stroke();
-
-//     // Draw "Timeline" title at the top manually (not in events array)
-//     ctx.fillStyle = "#00ccff"; // Highlighted color
-//     ctx.beginPath();
-//     ctx.arc(200, padding, 10, 0, Math.PI * 2);
-//     ctx.fill();
-
-//     ctx.fillStyle = "#ffffff";
-//     ctx.font = "bold 18px Arial";
-//     ctx.textAlign = "left";
-//     ctx.fillText("Timeline", 230, padding + 5);
-
-//     // Draw events on the timeline
-//     ctx.font = "16px Arial";
-
-//     //changes
-//     const moodEmojis = {
-//         happy: "😁",
-//         sad: "😔",
-//         neutral: "😐",
-//         nervous: "😥",
-//         angry: "😤"
-//     };
-    
-//     events.forEach((event, index) => {
-//         let yPos = padding + (index + 1) * gap; 
-
-//         // Draw event circle
-//         ctx.fillStyle = "#ffcc00";
-//         ctx.beginPath();
-//         ctx.arc(200, yPos, 10, 0, Math.PI * 2);
-//         ctx.fill();
-
-//         // Set text color
-//         ctx.fillStyle = "#ffffff";
-//         ctx.textAlign = "right";
-//         ctx.fillText(event.date, 170, yPos + 5);
-
-//         ctx.textAlign = "left";
-
-//         //chnages 
-        
-//         let moodText = event.mood.charAt(0).toUpperCase() + event.mood.slice(1); // Capitalize mood
-//         let emoji = moodEmojis[event.mood] || ""; // Get emoji or empty string
-//         let fullText = `${emoji} ${moodText} - ${event.text}`; 
-
-//         ctx.fillText(fullText, 230, yPos + 5); 
-
-
-//         //
-//         // 
-//         // ctx.fillText(event.text, 230, yPos + 5);
-
-//         // Update event position for further use if needed
-//         event.y = yPos;
-//     });
-// }
-
 //changes for slightly shifting the timeline
 function drawTimeline(events) {
     let padding = 50; // Extra space at the top and bottom
@@ -245,13 +171,13 @@ function timelineHeading(){
     let padding = 50;
     ctx.fillStyle = "#00ccff"; 
     ctx.beginPath();
-    ctx.arc(200, padding, 10, 0, Math.PI * 2);
+    ctx.arc(200 - 45 , padding, 10, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 18px Arial";
     ctx.textAlign = "left";
-    ctx.fillText("Timeline", 230, padding + 5);
+    ctx.fillText("Timeline", 230 - 45, padding + 5);
 }
 
 
@@ -261,26 +187,7 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 
 // Function to filter logs based on selected timeframe
 function filterLogs(filterType) {
-    // const storedData = localStorage.getItem("events");
-    // if (!storedData) return;
-
-    // let events = JSON.parse(storedData);
-    // const today = new Date();
-    // today.setHours(0, 0, 0, 0); // Normalize to midnight
-
-    // if (filterType !== "all") {
-    //     events = events.filter(event => {
-    //     const eventDate = new Date(event.date);
-    //     eventDate.setHours(0, 0, 0, 0); // Normalize to midnight
-    //     const timeDiff = (today - eventDate) / (1000 * 60 * 60 * 24); // Difference in days
-
-    //     if (filterType === "day") return timeDiff === 0;  // ✅ Exact match for today
-    //     if (filterType === "week") return timeDiff >= 0 && timeDiff < 7;  // ✅ Last 7 days
-    //     if (filterType === "month") return timeDiff >= 0 && timeDiff < 30; // ✅ Last 30 days
-    //     });
-    // }
-
-    // drawTimeline(events);
+    
     const storedData = localStorage.getItem("events");
 if (!storedData) return;
 
@@ -305,7 +212,7 @@ if (filterType !== "all") {
 }
 
 
-// ✅ Now send events to the function that renders the logs
+
 drawTimeline(events);
 
     
@@ -320,7 +227,7 @@ filterButtons.forEach(btn => {
     });
 });
 
-// ✅ Initially load all logs and highlight "All Logs" button
+
 filterLogs("all");
 
 
