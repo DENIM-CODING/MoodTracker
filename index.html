@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Column Layout - Dark Theme</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="left-column">
+            <div class="text-section">How was your day?</div>
+            
+            <div class="options-section">
+                <div id="happy" class="emotion-option" onclick="selectEmotion('happy')">Happy 😁</div>
+                <div id="sad" class="emotion-option" onclick="selectEmotion('sad')">Sad 😔</div>
+                <div id="neutral" class="emotion-option" onclick="selectEmotion('neutral')">Neutral 😐</div>
+                <div id="nervous" class="emotion-option" onclick="selectEmotion('nervous')">Nervous 😥</div>
+                <div id="angry" class="emotion-option"  onclick="selectEmotion('angry')">Angry 😤</div>
+                <div class="extra-space">
+                    <p id="quote-box">"Every day may not be good, but there is something good in every day."</p>
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" id="message-box" class="message-input" placeholder="Add a message..." />
+                <div class="button-group">
+                    <!-- <button id="add-emotion-button" class="custom-emotion-btn">Add Custom Emotion</button> not added now--> 
+                    <button id="log-button" class="log-mood-btn">Log Mood</button> 
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        <div class="right-column">
+            <div class="timeline-controls">
+                <button class="filter-btn active" data-filter="all">All Logs</button>
+                <button class="filter-btn" data-filter="day">Day Log</button>
+                <button class="filter-btn" data-filter="week">Week Log</button>
+                <button class="filter-btn" data-filter="month">Month Log</button>
+                <button id="calendar-btn">Calendar View</button>
+
+            </div>
+            
+            <canvas id="emotionCanvas"></canvas>
+        </div>
+        
+    </div>
+    <div id="calendar-popup">
+        <div id="calendar-container">
+            <span id="close-calendar">&times;</span>
+            <div id="calendar"></div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
